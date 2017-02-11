@@ -9,6 +9,14 @@
 
 class IRArm {
 public:
-	IRArm();
+	
+	
+	IRArm(unit32_t ArmChannel);
+	
+	void StartArm();
+	
+	protected:
+	frc::VictorSP Arm;
+	
 };
 
