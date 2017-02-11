@@ -68,6 +68,7 @@ public:
 			SmartDashboard::PutData("IMU", imu);
 
 			myDrive.ArcadeDrive(joystick, true); // drive with arcade style (use right stick), boolean true if using deadZone
+			if(gamePad.GetRawButton(3)) irlift.Lift();
 
 			// wait for a motor update time
 			frc::Wait(0.005);
