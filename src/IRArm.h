@@ -6,6 +6,7 @@
  */
 
 #pragma once
+#include <Servo.h>
 
 class IRArm {
 public:
@@ -20,3 +21,15 @@ public:
 	
 };
 
+
+class IRAcuator{
+public:
+	IRAcuator(uint32_AcuatorChannel);
+
+	void AcuatorIn();
+	void AcuatorUit();
+
+protected:
+	frc::Servo Acuator;
+
+};
