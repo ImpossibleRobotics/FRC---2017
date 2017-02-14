@@ -30,12 +30,6 @@ Void IRArm::BackwardsArm()
 }
 
 
-
-IRAcuator::IRAcuator(uint32_t AcuatorChannel) :
-Acuator(AcuatorChannel),
-	{
-	}
-
 void IRAcuator::AcuatorIn()
 {
 	Acuator.Set(0);
