@@ -15,21 +15,15 @@ public:
 	IRArm(unit32_t ArmChannel);
 	
 	void StartArm();
-	
-	protected:
-	frc::VictorSP Arm;
-	
-};
-
-
-class IRAcuator{
-public:
-	IRAcuator(uint32_AcuatorChannel);
-
 	void AcuatorIn();
 	void AcuatorUit();
 
-protected:
+	protected:
+	frc::VictorSP Arm;
+	
+	protected:
 	frc::Servo Acuator;
 
+	
 };
+
