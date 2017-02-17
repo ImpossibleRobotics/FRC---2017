@@ -22,7 +22,8 @@
 
 class Robot: public frc::SampleRobot {
 	IR::IRRobotDrive 	myDrive	 {0, 1, 2, 3, IR::Mecanum};
-	IR::IRJoystick 		joystick {0}; // only joystick
+	IR::IRJoystick 		joystick {0},
+						gamePad{1};
 	IR::IRArm			irArm {9,9};
 	IR::IRLift 			irLift {9,9};
 
@@ -71,8 +72,8 @@ public:
 
 			myDrive.ArcadeDrive(joystick, true); // drive with arcade style (use right stick), boolean true if using deadZone
 
-//			if(gamePad.GetRawButton(0)) irArm.AcuatorIn();
-// 			if(gamePad.GetRawButton(2)) irArm.AcuatorUit();
+			if(gamePad.GetRawButton(0)) irArm.AcuatorIn();
+ 			if(gamePad.GetRawButton(2)) irArm.AcuatorUit();
 
 			// wait for a motor update time
 			frc::Wait(0.005);
