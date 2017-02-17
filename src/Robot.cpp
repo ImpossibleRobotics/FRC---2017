@@ -74,6 +74,8 @@ public:
 
 			if(gamePad.GetRawButton(0)) irArm.AcuatorIn();
  			if(gamePad.GetRawButton(2)) irArm.AcuatorUit();
+			if(gamePad.GetRawButton(3)) IRLift.Lift();
+			else(IRLift.StopLift();
 
 			// wait for a motor update time
 			frc::Wait(0.005);
