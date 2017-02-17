@@ -23,7 +23,7 @@
 class Robot: public frc::SampleRobot {
 	IR::IRRobotDrive 	myDrive	 {0, 1, 2, 3, IR::Mecanum};
 	IR::IRJoystick 		joystick {0}; // only joystick
-	IR::IRArm			irArm {9};
+	IR::IRArm			irArm {9,9};
 	IR::IRLift 			irLift {9,9};
 
 	frc::SendableChooser<std::string> chooser;

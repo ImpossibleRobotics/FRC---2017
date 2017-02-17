@@ -16,7 +16,7 @@ namespace IR {
 	public:
 	
 	
-		IRArm(uint32_t ArmChannel);
+		IRArm(uint32_t ArmChannel, uint32_t ActuatorChannel);
 	
 		void StartArm();
 		void StopArm();

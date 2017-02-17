@@ -9,8 +9,9 @@
 
 using namespace IR;
 
-IRArm::IRArm(uint32_t ArmChannel) :
-	Arm(ArmChannel)
+IRArm::IRArm(uint32_t ArmChannel, uint32_t ActuatorChannel) :
+	Arm(ArmChannel),
+	Acuator(ActuatorChannel)
 {
 
 }
@@ -39,6 +40,6 @@ void IRArm::AcuatorIn()
  
  void IRArm::AcuatorUit()
  {
- 	Acuator.Set(1)
+ 	Acuator.Set(1);
  }
 
