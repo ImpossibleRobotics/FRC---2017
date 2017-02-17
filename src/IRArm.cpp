@@ -7,26 +7,29 @@
 
 #include <IRArm.h>
 
+using namespace IR;
 
-	IRArm::IRArm(uint32_t ArmChannel) :
-	
+IRArm::IRArm(uint32_t ArmChannel) :
 	Arm(ArmChannel)
-Void IRArm::StartArm()
 {
-	Arm.set(1);
 
 }
-	Void IRArm::StopArm()
-	{
-	Arm.set(0);	
-	}
 
-Void IRArm::BackwardsArm()
+void IRArm::StartArm()
+{
+	Arm.Set(1);
+
+}
+
+void IRArm::StopArm()
+{
+	Arm.Set(0);
+}
+
+void IRArm::BackwardsArm()
 {
 
-	Arm.set(-1);
-	
-	
+	Arm.Set(-1);
 }
 
 

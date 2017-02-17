@@ -6,15 +6,19 @@
 
 #include <VictorSP.h>
 
-class IRLift {
-public:
-	IRLift(uint32_t Lift1Channel, uint32_t Lift2Channel);
+namespace IR {
 
-	void Lift();
-	void StopLift();
+	class IRLift {
+	public:
+		IRLift(uint32_t Lift1Channel, uint32_t Lift2Channel);
+
+		void Lift();
+		void StopLift();
 	
 
-protected:
-	frc::VictorSP Lift1, Lift2;
+	protected:
+		frc::VictorSP Lift1, Lift2;
 
-};
+	};
+
+}

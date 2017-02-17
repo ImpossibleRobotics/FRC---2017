@@ -15,11 +15,16 @@
 #include <RobotDrive.h>
 #include <Timer.h>
 
+#include <IRArm.h>
+#include <IRLift.h>
+
 #include <../drivers/imu/ADIS16448_IMU.h>
 
 class Robot: public frc::SampleRobot {
 	IR::IRRobotDrive 	myDrive	 {0, 1, 2, 3, IR::Mecanum};
 	IR::IRJoystick 		joystick {0}; // only joystick
+	IR::IRArm			irArm {9};
+	IR::IRLift 			irLift {9,9};
 
 	frc::SendableChooser<std::string> chooser;
 	const std::string autoNameDefault = "Default";
@@ -61,16 +66,13 @@ public:
 	 * Runs the motors with arcade steering.
 	 */
 	void OperatorControl() override {
-
-		bool button4Pressed = false;
-
 		while (IsOperatorControl() && IsEnabled()) {
 			SmartDashboard::PutData("IMU", imu);
 
 			myDrive.ArcadeDrive(joystick, true); // drive with arcade style (use right stick), boolean true if using deadZone
 
-			if(gamePad.GetRawButton(0)) irarm.AcuatorIn();
- 			if(gamePad.GetRawButton(2)) irarm.AcuatorUit();
+//			if(gamePad.GetRawButton(0)) irArm.AcuatorIn();
+// 			if(gamePad.GetRawButton(2)) irArm.AcuatorUit();
 
 			// wait for a motor update time
 			frc::Wait(0.005);

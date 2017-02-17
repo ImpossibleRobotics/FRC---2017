@@ -5,18 +5,25 @@
  *      Author: Dylan Vos
  */
 
+#include<VictorSP.h>
+
 #pragma once
 
-class IRArm {
-public:
+namespace IR {
+
+	class IRArm {
+	public:
 	
 	
-	IRArm(unit32_t ArmChannel);
+		IRArm(uint32_t ArmChannel);
 	
-	void StartArm();
+		void StartArm();
+		void StopArm();
+		void BackwardsArm();
 	
 	protected:
-	frc::VictorSP Arm;
+		frc::VictorSP Arm;
 	
-};
+	};
+}
 
