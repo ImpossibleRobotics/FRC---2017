@@ -5,7 +5,8 @@
  *      Author: Dylan Vos
  */
 
-#include<VictorSP.h>
+#include <VictorSP.h>
+#include <Servo.h>
 
 #pragma once
 
@@ -19,10 +20,13 @@ namespace IR {
 	
 		void StartArm();
 		void StopArm();
-		void BackwardsArm();
-	
+		void BackwardsArm();		
+		void AcuatorIn();
+ 		void AcuatorUit();
+		
 	protected:
 		frc::VictorSP Arm;
+ 		frc::Servo Acuator;
 	
 	};
 }
