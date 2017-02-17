@@ -5,7 +5,8 @@
  *      Author: Dylan Vos
  */
 
-#include<VictorSP.h>
+#include <VictorSP.h>
+#include <Servo.h>
 
 #pragma once
 
@@ -25,8 +26,6 @@ namespace IR {
 		
 	protected:
 		frc::VictorSP Arm;
- 
-	protected:
  		frc::Servo Acuator;
 	
 	};
