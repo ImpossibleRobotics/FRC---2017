@@ -19,10 +19,15 @@ namespace IR {
 	
 		void StartArm();
 		void StopArm();
-		void BackwardsArm();
-	
+		void BackwardsArm();		
+		void AcuatorIn();
+ 		void AcuatorUit();
+		
 	protected:
 		frc::VictorSP Arm;
+ 
+	protected:
+ 		frc::Servo Acuator;
 	
 	};
 }
