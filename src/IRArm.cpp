@@ -32,6 +32,13 @@ void IRArm::BackwardsArm()
 	Arm.Set(-1);
 }
 
-
-
+void IRArm::AcuatorIn()
+ {
+ 	Acuator.Set(0);
+ }
+ 
+ void IRArm::AcuatorUit()
+ {
+ 	Acuator.Set(1)
+ }
 
