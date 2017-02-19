@@ -29,7 +29,7 @@
 		<link>
 			<name>IRLibrary</name>
 			<type>2</type>
-			<location>D:/Eclipse Projects/FRC---IRLibrary/IRLibrary</location>
+			<locationURI>WORKSPACE_LOC/FRC---IRLibrary/IRLibrary</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

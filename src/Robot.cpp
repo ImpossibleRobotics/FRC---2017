@@ -6,13 +6,12 @@
 #include <string>
 
 #include <HumanInterfaceDevices/IRJoystick.h>
-#include <RobotDrive/IRRobotDrive.h>
+#include <RobotDrive/IRCANRobotDrive.h>
 
 #include <Joystick.h>
 #include <SampleRobot.h>
 #include <SmartDashboard/SendableChooser.h>
 #include <SmartDashboard/SmartDashboard.h>
-#include <RobotDrive.h>
 #include <Timer.h>
 
 #include <IRArm.h>
@@ -21,10 +20,11 @@
 #include <../drivers/imu/ADIS16448_IMU.h>
 
 class Robot: public frc::SampleRobot {
-	IR::IRRobotDrive 	myDrive	 {0, 1, 2, 3, IR::Mecanum};
+	//								  FL, RL, FR, RR
+	IR::IRCANRobotDrive 	myDrive	 {2,  3,  1,  0, IR::Mecanum};
 	IR::IRJoystick 		joystick {0},
 						gamePad{1};
-	IR::IRArm			irArm {9,9};
+	IR::IRArm			irArm {9,9};	//poorten moeten woorden defenieerd. Nadat elektronika in orde is.
 	IR::IRLift 			irLift {9,9};
 
 	frc::SendableChooser<std::string> chooser;
@@ -37,7 +37,6 @@ public:
 	Robot() {
 		imu = new ADIS16448_IMU;
 	}
-
 	void RobotInit() {
 		chooser.AddDefault(autoNameDefault, autoNameDefault);
 		chooser.AddObject(autoNameCustom, autoNameCustom);
@@ -61,6 +60,15 @@ public:
 		std::cout << "Auto selected: " << autoSelected << std::endl;
 
 
+		//Motor controlling
+		//myDrive.SetOutputMotors(1, 0);
+		//frc::Wait(1);
+		//myDrive.SetOutputMotors(0, 0);
+		//frc::Wait(1);
+		//myDrive.SetOutputMotors(0, 1);
+		//frc::Wait(1);
+		//myDrive.SetOutputMotors(0, 0);
+		//frc::Wait(1);
 	}
 
 	/*
@@ -72,8 +80,15 @@ public:
 
 			myDrive.ArcadeDrive(joystick, true); // drive with arcade style (use right stick), boolean true if using deadZone
 
-			if(gamePad.GetRawButton(0)) irArm.AcuatorIn();
- 			if(gamePad.GetRawButton(2)) irArm.AcuatorUit();
+			//if(gamePad.GetRawButton(0)) irArm.ActuatorIn(); // A-Button State, Defines if button is pressed
+ 			//if(gamePad.GetRawButton(2)) irArm.ActuatorUit(); // X-Button State, ""
+
+ 			//if(gamePad.GetRawButton(4)) irArm.StartArm(); // Left_Bumper-Button State, Defines if button is pressed
+ 			//if(gamePad.GetRawButton(1)) irArm.StopArm(); // B-Button State, ""
+ 			//if(gamePad.GetRawButton(5)) irArm.BackwardsArm(); // Right_Bumper-Button State, ""
+
+			//if(gamePad.GetRawButton(3)) irLift.Lift(); // Y-Button State, Defines if button is pressed
+ 			//if(gamePad.GetRawButton(1)) irLift.StopLift(); // B-Button State, ""
 
 			// wait for a motor update time
 			frc::Wait(0.005);
@@ -86,6 +101,8 @@ public:
 	void Test() override {
 
 	}
+
+private:
 };
 
 START_ROBOT_CLASS(Robot)

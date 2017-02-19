@@ -14,19 +14,18 @@ namespace IR {
 
 	class IRArm {
 	public:
-	
-	
+
 		IRArm(uint32_t ArmChannel, uint32_t ActuatorChannel);
 	
 		void StartArm();
 		void StopArm();
 		void BackwardsArm();		
-		void AcuatorIn();
- 		void AcuatorUit();
+		void ActuatorIn();
+ 		void ActuatorUit();
 		
 	protected:
 		frc::VictorSP Arm;
- 		frc::Servo Acuator;
+ 		frc::Servo Actuator;
 	
 	};
 }

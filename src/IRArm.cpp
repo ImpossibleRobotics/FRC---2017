@@ -11,7 +11,7 @@ using namespace IR;
 
 IRArm::IRArm(uint32_t ArmChannel, uint32_t ActuatorChannel) :
 	Arm(ArmChannel),
-	Acuator(ActuatorChannel)
+	Actuator(ActuatorChannel)
 {
 
 }
@@ -33,13 +33,13 @@ void IRArm::BackwardsArm()
 	Arm.Set(-1);
 }
 
-void IRArm::AcuatorIn()
+void IRArm::ActuatorIn()
  {
- 	Acuator.Set(0);
+ 	Actuator.Set(0);
  }
  
- void IRArm::AcuatorUit()
+ void IRArm::ActuatorUit()
  {
- 	Acuator.Set(1);
+ 	Actuator.Set(1);
  }
 
