@@ -31,11 +31,11 @@ class Robot: public frc::SampleRobot {
 	const std::string autoNameDefault = "Default";
 	const std::string autoNameCustom = "My Auto";
 
-	ADIS16448_IMU *imu;
+//	ADIS16448_IMU *imu;
 
 public:
 	Robot() {
-		imu = new ADIS16448_IMU;
+//		imu = new ADIS16448_IMU;
 	}
 	void RobotInit() {
 		chooser.AddDefault(autoNameDefault, autoNameDefault);
@@ -76,7 +76,7 @@ public:
 	 */
 	void OperatorControl() override {
 		while (IsOperatorControl() && IsEnabled()) {
-			SmartDashboard::PutData("IMU", imu);
+//			SmartDashboard::PutData("IMU", imu);
 
 			myDrive.ArcadeDrive(joystick, true); // drive with arcade style (use right stick), boolean true if using deadZone
 
