@@ -78,6 +78,18 @@ public:
 		while (IsOperatorControl() && IsEnabled()) {
 //			SmartDashboard::PutData("IMU", imu);
 
+			SmartDashboard::PutNumber("Joy-Y", joystick.GetY());
+			SmartDashboard::PutNumber("Joy-Y-DeadZoned", joystick.GetYDeadZoned());
+
+			SmartDashboard::PutNumber("Joy-X", joystick.GetX());
+			SmartDashboard::PutNumber("Joy-X-DeadZoned", joystick.GetXDeadZoned());
+
+			SmartDashboard::PutNumber("Joy-Z", joystick.GetZ());
+			SmartDashboard::PutNumber("Joy-Z-DeadZoned", joystick.GetZDeadZoned());
+
+			SmartDashboard::PutNumber("Joy-Throttle", joystick.GetThrottle());
+			SmartDashboard::PutNumber("Joy-Throttle-Leveled", joystick.GetLeveledThrottle());
+
 			myDrive.ArcadeDrive(joystick, true); // drive with arcade style (use right stick), boolean true if using deadZone
 
 			//if(gamePad.GetRawButton(0)) irArm.ActuatorIn(); // A-Button State, Defines if button is pressed
