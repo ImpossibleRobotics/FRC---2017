@@ -20,12 +20,12 @@
 #include <../drivers/imu/ADIS16448_IMU.h>
 
 class Robot: public frc::SampleRobot {
-	//								  FL, RL, FR, RR
-	IR::IRCANRobotDrive 	myDrive	 {2,  3,  1,  0, IR::Mecanum};
+	//							  FL, RL, FR, RR
+	IR::IRCANRobotDrive myDrive	 {2,  3,  1,  0, IR::Mecanum};
 	IR::IRJoystick 		joystick {0},
 						gamePad{1};
-	IR::IRArm			irArm {9,9};	//poorten moeten woorden defenieerd. Nadat elektronika in orde is.
-	IR::IRLift 			irLift {9,9};
+//	IR::IRArm			irArm {9,9};	//poorten moeten woorden defenieerd. Nadat elektronika in orde is.
+//	IR::IRLift 			irLift {9,9};
 
 	frc::SendableChooser<std::string> chooser;
 	const std::string autoNameDefault = "Default";
