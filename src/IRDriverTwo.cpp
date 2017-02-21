@@ -20,15 +20,17 @@ IRDriverTwo::~IRDriverTwo() {
 }
 
 void IRDriverTwo::Run(){
-	if(joystick->GetRawButton(0)) irArm->ActuatorIn(); // A-Button State, Defines if button is pressed
-	if(joystick->GetRawButton(2)) irArm->ActuatorUit(); // X-Button State, ""
+	if(joystick->GetRawButton(1)) irArm->ActuatorIn(); // A-Button State, Defines if button is pressed
+	if(joystick->GetRawButton(3)) irArm->ActuatorUit(); // X-Button State, ""
 
-	if(joystick->GetRawButton(4)) irArm->StartArm(); // Left_Bumper-Button State, Defines if button is pressed
-	if(joystick->GetRawButton(1)) irArm->StopArm(); // B-Button State, ""
-	if(joystick->GetRawButton(5)) irArm->BackwardsArm(); // Right_Bumper-Button State, ""
+	if(joystick->GetRawButton(5)) irArm->StartArm(); // Left_Bumper-Button State, Defines if button is pressed
+	if(joystick->GetRawButton(6)) irArm->BackwardsArm(); // Right_Bumper-Button State, ""
 
-	if(joystick->GetRawButton(3)) irLift->Lift(); // Y-Button State, Defines if button is pressed
-	if(joystick->GetRawButton(1)) irLift->StopLift(); // B-Button State, ""
+	if(joystick->GetRawButton(4)) irLift->Lift(); // Y-Button State, Defines if button is pressed
+	if(joystick->GetRawButton(2)) {
+		irLift->StopLift(); // B-Button State, ""
+		irArm->StopArm();
+	}
 
 	frc::Wait(0.005);
 }
