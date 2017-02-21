@@ -16,20 +16,25 @@
 
 #include <IRArm.h>
 #include <IRLift.h>
+#include <IRDriverOne.h>
+#include <IRDriverTwo.h>
 
 #include <../drivers/imu/ADIS16448_IMU.h>
 
 class Robot: public frc::SampleRobot {
 	//							  FL, RL, FR, RR
-	IR::IRCANRobotDrive myDrive	 {2,  3,  1,  0, IR::Mecanum};
+	IR::IRCANRobotDrive myDrive	 {1,  0,  2,  3, IR::Mecanum};
 	IR::IRJoystick 		joystick {0},
 						gamePad{1};
-//	IR::IRArm			irArm {9,9};	//poorten moeten woorden defenieerd. Nadat elektronika in orde is.
-//	IR::IRLift 			irLift {9,9};
+	IR::IRArm			irArm {8,9};	//poorten moeten woorden defenieerd. Nadat elektronika in orde is.
+	IR::IRLift 			irLift {6,7};
 
 	frc::SendableChooser<std::string> chooser;
 	const std::string autoNameDefault = "Default";
 	const std::string autoNameCustom = "My Auto";
+
+	IR::IRDriverOne driverOneTask {&joystick, &myDrive};
+	IR::IRDriverTwo driverTwoTask {&gamePad, &irArm, &irLift};
 
 //	ADIS16448_IMU *imu;
 
@@ -41,6 +46,8 @@ public:
 		chooser.AddDefault(autoNameDefault, autoNameDefault);
 		chooser.AddObject(autoNameCustom, autoNameCustom);
 		frc::SmartDashboard::PutData("Auto Modes", &chooser);
+
+		myDrive.SetMotorsInverted(false, false, true, true);
 	}
 
 	/*
@@ -59,16 +66,11 @@ public:
 		// std::string autoSelected = frc::SmartDashboard::GetString("Auto Selector", autoNameDefault);
 		std::cout << "Auto selected: " << autoSelected << std::endl;
 
-
-		//Motor controlling
-		//myDrive.SetOutputMotors(1, 0);
-		//frc::Wait(1);
-		//myDrive.SetOutputMotors(0, 0);
-		//frc::Wait(1);
-		//myDrive.SetOutputMotors(0, 1);
-		//frc::Wait(1);
-		//myDrive.SetOutputMotors(0, 0);
-		//frc::Wait(1);
+		myDrive.Drive(0.0, 0.5, 0.0);
+		frc::Wait(2);
+		myDrive.Drive(90.0, 0.5, 0.0);
+		frc::Wait(2);
+		myDrive.Drive(0.0, 0.0, 0.0);
 	}
 
 	/*
@@ -76,7 +78,13 @@ public:
 	 */
 	void OperatorControl() override {
 		while (IsOperatorControl() && IsEnabled()) {
+			if(!driverOneTask.isEnabled()) driverOneTask.Start();
+			if(!driverTwoTask.isEnabled()) driverTwoTask.Start();
+
 //			SmartDashboard::PutData("IMU", imu);
+
+			SmartDashboard::PutBoolean("Driver One Task", driverOneTask.isEnabled());
+			SmartDashboard::PutBoolean("Driver Two Task", driverTwoTask.isEnabled());
 
 			SmartDashboard::PutNumber("Joy-Y", joystick.GetY());
 			SmartDashboard::PutNumber("Joy-Y-DeadZoned", joystick.GetYDeadZoned());
@@ -90,21 +98,11 @@ public:
 			SmartDashboard::PutNumber("Joy-Throttle", joystick.GetThrottle());
 			SmartDashboard::PutNumber("Joy-Throttle-Leveled", joystick.GetLeveledThrottle());
 
-			myDrive.ArcadeDrive(joystick, true); // drive with arcade style (use right stick), boolean true if using deadZone
-
-			//if(gamePad.GetRawButton(0)) irArm.ActuatorIn(); // A-Button State, Defines if button is pressed
- 			//if(gamePad.GetRawButton(2)) irArm.ActuatorUit(); // X-Button State, ""
-
- 			//if(gamePad.GetRawButton(4)) irArm.StartArm(); // Left_Bumper-Button State, Defines if button is pressed
- 			//if(gamePad.GetRawButton(1)) irArm.StopArm(); // B-Button State, ""
- 			//if(gamePad.GetRawButton(5)) irArm.BackwardsArm(); // Right_Bumper-Button State, ""
-
-			//if(gamePad.GetRawButton(3)) irLift.Lift(); // Y-Button State, Defines if button is pressed
- 			//if(gamePad.GetRawButton(1)) irLift.StopLift(); // B-Button State, ""
-
 			// wait for a motor update time
 			frc::Wait(0.005);
 		}
+		driverOneTask.Pause();
+		driverTwoTask.Pause();
 	}
 
 	/*
