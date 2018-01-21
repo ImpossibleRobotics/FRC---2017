@@ -19,8 +19,6 @@
 #include <IRDriverOne.h>
 #include <IRDriverTwo.h>
 
-#include <../drivers/imu/ADIS16448_IMU.h>
-
 class Robot: public frc::SampleRobot {
 	//							  FL, RL, FR, RR
 	IR::IRCANRobotDrive myDrive	 {1,  0,  2,  3, IR::Mecanum};
